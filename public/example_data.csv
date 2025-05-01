@@ -1,0 +1,30 @@
+account,date,amount,currency,title,category
+DAILY,2009-11-10,8300,PLN,Salary Oct/2009,Income
+DAILY,2009-11-12,-2100,PLN,Transfer for flat rent,Rent
+DAILY,2009-11-12,-1343.23,EUR,Transfer for flat media,Utilities
+DAILY,2009-12-01,-86.59,PLN,[Card payment] coffee and cookie,Food & Drink
+DAILY,2009-12-01,-28,USD,2x espresso Gpay,Food & Drink
+DAILY,2009-12-01,12000,PLN,transfer,Income
+DAILY,2009-12-01,8300,PLN,Salary Nov/2009,Income
+DAILY,2009-12-01,-4500,GBP,internal transfer,Transfer
+SAVINGS,2009-12-01,4500,GBP,internal transfer,Transfer
+DAILY,2009-11-15,-180,AUD,Grocery shopping at Biedronka,Groceries
+DAILY,2009-11-22,-45,PLN,Uber ride,Transport
+CREDIT,2009-11-25,-1299,PLN,New headphones,Electronics
+DAILY,2009-12-03,200,PLN,Sold old desk,Income
+JOINT,2009-12-06,-230,USD,Family dinner,Food & Drink
+CREDIT,2009-12-10,-600,PLN,Hotel booking,Travel
+DAILY,2009-12-15,-300,PLN,Clothes from Zalando,Shopping
+DAILY,2009-12-17,-89.99,PLN,Streaming subscription,Entertainment
+JOINT,2009-12-20,-400,EUR,Shared groceries,Groceries
+CREDIT,2009-12-21,-1600,PLN,Flight tickets,Travel
+DAILY,2010-01-05,8300,PLN,Salary Dec/2009,Income
+DAILY,2010-01-07,-2200,USD,Flat rent,Rent
+DAILY,2010-01-08,-300,PLN,Utilities bill,Utilities
+CREDIT,2010-01-10,-95,GBP,Amazon order,Shopping
+DAILY,2010-01-12,-180,PLN,Restaurant lunch,Food & Drink
+DAILY,2010-01-15,-150,PLN,Taxi to airport,Transport
+JOINT,2010-01-18,500,PLN,Transfer from partner,Transfer
+DAILY,2010-01-20,-25,AUD,Coffee at Green Nero,Food & Drink
+DAILY,2010-01-21,-150,PLN,Cat vet visit,Pet
+DAILY,2010-01-22,-100,PLN,Yoga class,Fitness
