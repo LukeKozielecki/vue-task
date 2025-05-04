@@ -1,5 +1,12 @@
 <template>
   <div>
+    <label>Group by:
+      <select v-model="groupBy">
+        <option value="category">Category</option>
+        <option value="currency">Currency</option>
+        <option value="account">Account</option>
+      </select>
+    </label>
     <label>xml<input type="radio" value="xml" v-model="view" /></label>
     <label>table<input type="radio" value="table" v-model="view" /> </label>
   </div>
@@ -32,7 +39,7 @@
             </td>
           </tr>
 
-          <template v-if="!hidden.has(key)">
+          <template v-if="!collapsedGroups.has(key)">
             <tr v-for="(row, idx) in value" :key="idx">
               <td v-for="(cellValue, cellKey) in row" :key="cellKey">
                 {{ cellValue }}
@@ -42,7 +49,7 @@
             <tr v-if="value.length > 1">
               <td style="text-align: right">
                 <span v-if="value.length > 1">
-                  total: {{ totalGet(value) }}PLN
+                  total: {{ groupTotals[key] }}PLN
                 </span>
               </td>
             </tr>
@@ -62,55 +69,19 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, ref } from "vue";
-import { dataGroup, toXml, useExampleData } from "./utils";
+import { useAppLogic } from "./composables/useApp";
 
-const view = ref<"xml" | "table">("table");
-
-type Data = {
-  category: string;
-  amount: string;
-  currency: string;
-  [key: string]: string;
-};
-
-const data = useExampleData<Data>();
-
-// TODO: TASK → avoid recomputing while user is still typing
-const xml = computed(() => toXml(data.value ?? []));
-
-// TODO: TASK → let the user also group by currency and account
-const groupedData = computed(() =>
-  data.value //
-    ? dataGroup(data.value, "category")
-    : [],
-);
-const headers = computed(() =>
-  Object.keys(data.value?.[0] ?? {}).filter((i) => i !== "category"),
-);
-
-const hidden = reactive(new Set<string>());
-function groupToggle(groupKey: string) {
-  hidden.has(groupKey) //
-    ? hidden.delete(groupKey)
-    : hidden.add(groupKey);
-}
-
-// TODO: TASK → handle different currencies. Use `plnToCurrency` function to get the rates
-function totalGet(items: { amount: string | number; currency: string }[]) {
-  return items.reduce((acc, curr) => acc + Number(curr.amount), 0);
-}
-
-// @ts-ignore
-async function plnToCurrency(curr: string) {
-  if (curr === "pln") return 1;
-
-  const res = await fetch(
-    `http://localhost:5173/currency/pln-to-${curr.toLowerCase()}`,
-  );
-  const text = await res.text();
-  return Number(text.trim());
-}
+const {
+  view,
+  groupBy,
+  data,
+  xml,
+  groupedData,
+  headers,
+  collapsedGroups,
+  groupToggle,
+  groupTotals,
+} = useAppLogic();
 </script>
 
 <style scoped>
